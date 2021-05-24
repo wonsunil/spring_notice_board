@@ -31,6 +31,7 @@ header {
 	justify-content: center;
 	background: rgb(95, 203, 113);
 }
+#profile a{ color: white; }
 
 #profile hr {
 	margin-bottom: 10px;
