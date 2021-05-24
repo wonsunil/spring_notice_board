@@ -1,0 +1,114 @@
+body {
+	height: 100vh;
+	background: linear-gradient(130deg, rgba(212, 129, 255, 1) 0%,
+		rgba(147, 158, 247, 1) 70%, rgba(138, 233, 255, 1) 85%);
+}
+
+#wrap {
+	width: 60%;
+	min-height: 500px;
+	background: #efefef;
+	border-radius: 10px;
+	box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.3);
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+#wrap.login{
+	display: grid;
+	grid-template-columns: 40% 60%;
+}
+
+#form-blind {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	color: white;
+	background: linear-gradient(95deg, rgba(98, 225, 255, 1) 0%,
+		rgba(203, 93, 255, 1) 100%);
+	border-top-left-radius: 10px 10px;
+	border-bottom-left-radius: 10px 10px;
+	position: relative;
+}
+
+#form-blind>div {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+}
+
+.form {
+	width: 60%;
+	height: 80%;
+	margin: auto;
+}
+.form-group{ padding: 5px 0; }
+.form-group:last-child{ margin-top: 5px; }
+
+.content{
+	margin: 20% auto;
+}
+
+.btn {
+	border-radius: 20px;
+	padding: 6px 25px;
+	border: 1px solid #333;
+	outline: none;
+}
+
+.blind-btn {
+	position: absolute;
+	top: 60%;
+	z-index: 10;
+	box-sizing: border-box;
+}
+
+.blind-btn:focus, .blind-btn:active {
+	outline: none;
+}
+
+.blind-btn:hover {
+	border: none;
+	color: white;
+	transition: 0.2s;
+}
+
+.blind-btn:hover::after {
+	opacity: 1;
+	width: 100%;
+	height: 110%;
+	left: 0;
+	top: -5%;
+	transition: 0.5s;
+}
+
+.blind-btn::after {
+	content: "-";
+	color: rgba(0, 0, 0, 0);
+	width: 120%;
+	height: 145%;
+	position: absolute;
+	top: -22.5%;
+	left: -10%;
+	border: 2px solid white;
+	border-radius: 25px;
+	z-index: 5;
+	opacity: 0;
+	transition: 0.3s;
+}
+
+#form-decoration {
+	width: 50px;
+	height: 50px;
+	margin: 20px auto;
+}
+
+#form-decoration>img {
+	width: 100%;
+	height: 100%;
+}
