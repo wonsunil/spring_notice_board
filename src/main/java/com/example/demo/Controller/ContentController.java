@@ -56,8 +56,8 @@ public class ContentController {
 	@PostMapping("/write")
 	public String write(@ModelAttribute Content content) {
 		contentService.write(content);
-		
-		return "index";
+
+		return "redirect:/";
 	}
 
 	@GetMapping("/{contentId}")
