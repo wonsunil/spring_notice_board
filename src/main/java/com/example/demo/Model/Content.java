@@ -1,11 +1,6 @@
 package com.example.demo.Model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,7 +13,8 @@ import lombok.Setter;
 @Table(name = "content_info")
 public class Content {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator( name = "content_seq", sequenceName = "content_seq", allocationSize = 1 )
+	@GeneratedValue(generator = "content_seq")
 	@Column(name = "content_id")
 	private int contentId;
 
