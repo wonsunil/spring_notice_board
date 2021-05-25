@@ -26,12 +26,12 @@ public class AccountController {
 	
 	public AccountController(AccountService accountService) {
 		this.accountService = accountService;
-	};
+	}
 	
 	@GetMapping("/register")
 	public String register() {
 		return "pages/account/register";
-	};
+	}
 	
 	@PostMapping("/register")
 	public void register(@ModelAttribute User user, HttpServletResponse response) throws IOException {
@@ -41,8 +41,8 @@ public class AccountController {
 			function.alert("회원가입되었습니다.", "/index", response);			
 		}else {
 			function.alert("중복된 아이디입니다.", "/register", response);
-		};
-	};
+		}
+	}
 	
 	@GetMapping("/login")
 	public String login() {
@@ -50,7 +50,7 @@ public class AccountController {
 	};
 	
 	@PostMapping("/login")
-	public void login(Model model, @ModelAttribute User user, HttpSession session, HttpServletResponse response) throws IOException {
+	public String login(Model model, @ModelAttribute User user, HttpSession session) {
 		 User findUser = accountService.login(user);
 		 if(!Objects.isNull(findUser)) {
 			 model.addAttribute("user", findUser);
@@ -68,7 +68,7 @@ public class AccountController {
 		session.setAttribute("user", null);
 		
 		return "redirect:/";
-	};
+	}
 	
 	@GetMapping("/user/{id}/profile")
 	public String profilePage(@PathVariable(value = "id") String id, Model model) {
@@ -76,11 +76,11 @@ public class AccountController {
 		model.addAttribute("user", user);
 		
 		return "pages/account/profile";
-	};
+	}
 
 	@GetMapping("/users")
 	@ResponseBody
 	public List<User> getAllUsers() {
 		return accountService.findAll();
-	};
+	}
 }
