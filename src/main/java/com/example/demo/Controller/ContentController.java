@@ -42,6 +42,12 @@ public class ContentController {
 		return contentService.getAllContents();
 	}
 
+	@GetMapping("/backup/contents")
+	@ResponseBody
+	public List<ContentBackup> getAllContentBackups() {
+		return contentService.getAllContentBackups();
+	}
+
 	@GetMapping("/write")
 	public String writePage(HttpSession session, HttpServletResponse response, Model model) throws IOException {
 		if(session.getAttribute("user") == null) {
