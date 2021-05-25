@@ -7,12 +7,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 @Table(name = "content_info")
@@ -33,46 +33,6 @@ public class Content {
 
 	@Column(name = "written_date", nullable = false)
 	private String writtenDate;
-
-	public int getContentId() {
-		return contentId;
-	};
-
-	public void setContentId(int contentId) {
-		this.contentId = contentId;
-	};
-
-	public String getContentTitle() {
-		return contentTitle;
-	};
-
-	public void setContentTitle(String contentTitle) {
-		this.contentTitle = contentTitle;
-	};
-
-	public String getContentWriter() {
-		return contentWriter;
-	};
-
-	public void setContentWriter(String contentWriter) {
-		this.contentWriter = contentWriter;
-	};
-
-	public String getContentContent() {
-		return contentContent;
-	};
-
-	public void setContentContent(String contentContent) {
-		this.contentContent = contentContent;
-	};
-
-	public String getWrittenDate() {
-		return writtenDate;
-	};
-
-	public void setWrittenDate(String writtenDate) {
-		this.writtenDate = writtenDate;
-	};
 
 	@Override
 	public String toString() {
