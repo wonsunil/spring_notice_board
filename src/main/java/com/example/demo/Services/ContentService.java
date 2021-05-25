@@ -2,17 +2,19 @@ package com.example.demo.Services;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.demo.Model.Content;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
-import com.example.demo.Model.Content;
 import com.example.demo.Repository.ContentRepository;
 
 @Service
 public class ContentService {
-	@Autowired
 	ContentRepository contentRepository;
+
+	public ContentService(ContentRepository contentRepository) {
+		this.contentRepository = contentRepository;
+	};
 	
 	public void write(@ModelAttribute Content content) {
 		contentRepository.save(content);
