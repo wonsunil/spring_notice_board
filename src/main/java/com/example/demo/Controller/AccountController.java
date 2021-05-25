@@ -47,21 +47,23 @@ public class AccountController {
 	@GetMapping("/login")
 	public String login() {
 		return "pages/account/login";
-	};
-	
+	}
+
+	@PostMapping("/login-check")
+	public Boolean loginCheck(@ModelAttribute User user) {
+		return !Objects.isNull(accountService.login(user));
+	}
+
 	@PostMapping("/login")
 	public String login(Model model, @ModelAttribute User user, HttpSession session) {
 		 User findUser = accountService.login(user);
-		 if(!Objects.isNull(findUser)) {
-			 model.addAttribute("user", findUser);
-			 
-			 session.setAttribute("user", findUser);
-			 
-			 function.alert("로그인에 성공하였습니다", "/", response);
-		 }else {
-			 function.alert("아이디 또는 비밀번호가 일치하지 않습니다", "/login", response);
-		 };
-	};
+
+		model.addAttribute("user", findUser);
+
+		session.setAttribute("user", findUser);
+
+		return "/";
+	}
 	
 	@GetMapping("/user/logout")
 	public String logout(HttpSession session) {
