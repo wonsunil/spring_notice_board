@@ -54,11 +54,11 @@ public class ContentController {
 	};
 	
 	@PostMapping("/write")
-	public void write(@ModelAttribute Content content, HttpServletResponse response) throws IOException {
+	public String write(@ModelAttribute Content content) {
 		contentService.write(content);
 		
-		function.alert("등록되었습니다.", "/index", response);
-	};
+		return "index";
+	}
 	
 	@GetMapping("/{contentId}")
 	public String contentDetail(Model model, @PathVariable(name = "contentId") int contentId) {
