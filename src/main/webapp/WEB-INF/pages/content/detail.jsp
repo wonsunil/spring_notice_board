@@ -32,6 +32,7 @@
         <div class="form-group">
             <c:if test="${!empty user && user.getId() == content.getContentWriter()}">
                 <a class="btn btn-primary" href="/content/${content.getContentId()}/update">수정하기</a>
+                <a href="/content/${content.getContentId()}/delete" class="btn btn-primary">삭제</a>
             </c:if>
             <a class="btn btn-primary" href="/index">홈</a>
         </div>
