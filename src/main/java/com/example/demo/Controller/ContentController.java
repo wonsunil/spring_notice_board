@@ -34,24 +34,24 @@ public class ContentController {
 	
 	public ContentController(ContentService contentService) {
 		this.contentService = contentService;
-	};
+	}
 	
 	@GetMapping("/contents")
 	@ResponseBody
 	public List<Content> getAllContents() {
 		return contentService.getAllContents();
-	};
+	}
 	
 	@GetMapping("/write")
 	public String writePage(HttpSession session, HttpServletResponse response, Model model) throws IOException {
 		if(session.getAttribute("user") == null) {
 			function.alert("로그인 이후 이용가능한 기능입니다.", "/login", response);
-		};
+		}
 		
 		model.addAttribute("user", session.getAttribute("user"));
 		
 		return "pages/content/content-write";
-	};
+	}
 	
 	@PostMapping("/write")
 	public String write(@ModelAttribute Content content) {
@@ -67,7 +67,7 @@ public class ContentController {
 		if(!Objects.isNull(findContent)) model.addAttribute("content", findContent);
 		
 		return "pages/content/content-detail";
-	};
+	}
 	
 	@PostMapping("/{contentId}/update")
 	public String contentUpdate(@PathVariable(name = "contentId") int contentId, @RequestParam Map<String, String> params) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, IndexOutOfBoundsException {
@@ -92,12 +92,12 @@ public class ContentController {
 		contentService.write(content);
 		
 		return "redirect:/";
-	};
+	}
 	
 	@PostMapping("/{contentId}/delete")
 	public String contentDelete(@PathVariable(name = "contentId") int contentId) {
 		contentService.remove(contentId);
 		
 		return "redirect:/";
-	};
+	}
 }
