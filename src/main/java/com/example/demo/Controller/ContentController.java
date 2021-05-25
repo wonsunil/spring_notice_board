@@ -56,7 +56,7 @@ public class ContentController {
 
 		model.addAttribute("user", session.getAttribute("user"));
 
-		return "pages/content/content-write";
+		return "pages/content/write";
 	}
 
 	@PostMapping("/write")
@@ -72,7 +72,14 @@ public class ContentController {
 
 		if(!Objects.isNull(findContent)) model.addAttribute("content", findContent);
 
-		return "pages/content/content-detail";
+		return "pages/content/detail";
+	}
+
+	@GetMapping("/{id}/update")
+	public String contentUpdatePage(@PathVariable(name = "id") int id, Model model) {
+		model.addAttribute("content", contentService.findById(id));
+
+		return "pages/content/update";
 	}
 
 	@PostMapping("/{contentId}/update")
