@@ -31,55 +31,55 @@ import com.example.demo.Function;
 public class ContentController {
 	private final ContentService contentService;
 	private final Function function = new Function();
-	
+
 	public ContentController(ContentService contentService) {
 		this.contentService = contentService;
 	}
-	
+
 	@GetMapping("/contents")
 	@ResponseBody
 	public List<Content> getAllContents() {
 		return contentService.getAllContents();
 	}
-	
+
 	@GetMapping("/write")
 	public String writePage(HttpSession session, HttpServletResponse response, Model model) throws IOException {
 		if(session.getAttribute("user") == null) {
 			function.alert("로그인 이후 이용가능한 기능입니다.", "/login", response);
 		}
-		
+
 		model.addAttribute("user", session.getAttribute("user"));
-		
+
 		return "pages/content/content-write";
 	}
-	
+
 	@PostMapping("/write")
 	public String write(@ModelAttribute Content content) {
 		contentService.write(content);
 		
 		return "index";
 	}
-	
+
 	@GetMapping("/{contentId}")
 	public String contentDetail(Model model, @PathVariable(name = "contentId") int contentId) {
 		Content findContent = contentService.findById(contentId);
-		
+
 		if(!Objects.isNull(findContent)) model.addAttribute("content", findContent);
-		
+
 		return "pages/content/content-detail";
 	}
-	
+
 	@PostMapping("/{contentId}/update")
 	public String contentUpdate(@PathVariable(name = "contentId") int contentId, @RequestParam Map<String, String> params) throws InvocationTargetException, IllegalAccessException {
 		Content content = contentService.findById(contentId);
-		
+
 		Method[] methods = content.getClass().getMethods();
 		List<Method> setters = new ArrayList<>();
 		List<String> setterNames = new ArrayList<>();
-		
+
 		Arrays.stream(methods).filter(method -> method.getName().startsWith("set")).forEach(setters::add);
 		setters.forEach(setter -> setterNames.add(setter.getName()));
-		
+
 		List<String> keys = new ArrayList<>(params.keySet());
 
 		for(String key : keys) {
@@ -90,14 +90,14 @@ public class ContentController {
 		}
 
 		contentService.write(content);
-		
+
 		return "redirect:/";
 	}
-	
+
 	@PostMapping("/{contentId}/delete")
 	public String contentDelete(@PathVariable(name = "contentId") int contentId) {
 		contentService.remove(contentId);
-		
+
 		return "redirect:/";
 	}
 }
