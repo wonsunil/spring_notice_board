@@ -95,7 +95,7 @@ public class ContentController {
 	}
 
 	@PostMapping("/{contentId}/delete")
-	public String contentDelete(@PathVariable(name = "contentId") int contentId) {
+	public String contentDelete(@PathVariable(name = "contentId") int contentId) throws InvocationTargetException, IllegalAccessException {
 		contentService.remove(contentId);
 
 		return "redirect:/";
