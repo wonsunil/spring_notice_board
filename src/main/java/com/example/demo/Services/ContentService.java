@@ -27,9 +27,33 @@ public class ContentService {
 
 	public void write(@ModelAttribute Content content) {
 		contentRepository.save(content);
-	};
-	
-	public void remove(int contentId) {
+	}
+
+	public void remove(int contentId) throws InvocationTargetException, IllegalAccessException {
+		Content content = contentRepository.findByContentId(contentId);
+		ContentBackup contentBackup = new ContentBackup();
+
+		contentBackup.setDeletedDate(new Date().toString());
+
+		Method[] methods = content.getClass().getMethods();
+		List<Method> getters = new ArrayList<>();
+		List<String> getterNames = new ArrayList<>();
+
+		Arrays.stream(methods).filter(method -> method.getName().startsWith("get")).forEach(getters::add);
+		getters.stream().map(Method::getName).forEach(getterNames::add);
+
+		List<Method> setters = new ArrayList<>();
+		List<String> setterNames = new ArrayList<>();
+
+		Arrays.stream(contentBackup.getClass().getMethods()).filter(method -> method.getName().startsWith("set") && !method.getName().equals("setDeletedDate") && !method.getName().equals("setDeletedId")).forEach(setters::add);
+		setters.stream().map(Method::getName).forEach(setterNames::add);
+
+		for(String setter: setterNames) {
+			setters.get(setterNames.indexOf(setter)).invoke(contentBackup, getters.get(getterNames.indexOf(setter.replace("set", "get"))).invoke(content));
+		}
+
+		contentBackupRepository.save(contentBackup);
+
 		contentRepository.deleteById(contentId);
 	}
 
