@@ -15,23 +15,19 @@
     <div class="form content">
         <div class="form-group">
             <label for="title">제목</label>
-            <input type="text" id="title" class="form-control"
-                   value="${content.getContentTitle()}" readonly>
+            <input type="text" id="title" class="form-control" value="${content.getContentTitle()}" readonly>
         </div>
         <div class="form-group">
             <label for="writer">작성자</label>
-            <input id="writer" name="contentWriter" class="form-control"
-                   value="${content.getContentWriter()}" readonly>
+            <input id="writer" name="contentWriter" class="form-control" value="${content.getContentWriter()}" readonly>
         </div>
         <div class="form-group">
             <label for="content">내용</label>
-            <textarea id="content" name="contentContent" class="form-control"
-                      readonly>${content.getContentContent()}</textarea>
+            <textarea id="content" name="contentContent" class="form-control" readonly>${content.getContentContent()}</textarea>
         </div>
         <div class="form-group">
             <label for="date">작성일</label>
-            <input type="date" id="date" name="writtenDate" class="form-control"
-                   readonly value="${content.getWrittenDate()}">
+            <input type="date" id="date" name="writtenDate" class="form-control" readonly value="${content.getWrittenDate()}">
         </div>
         <div class="form-group">
             <c:if test="${!empty user}">

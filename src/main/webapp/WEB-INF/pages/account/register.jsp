@@ -27,18 +27,15 @@
 			</div>
 			<div class="form-group">
 				<label for="id">Id</label>
-				<input type="text" id="id" name="id" class="form-control"
-					placeholder="Id">
+				<input type="text" id="id" name="id" class="form-control" placeholder="Id">
 			</div>
 			<div class="form-group">
 				<label for="password">Password</label>
-				<input type="password" id="password" name="password"
-					class="form-control" placeholder="Password">
+				<input type="password" id="password" name="password" class="form-control" placeholder="Password">
 			</div>
 			<div class="form-group">
 				<label for="name">Name</label>
-				<input type="text" id="name" name="name" class="form-control"
-					placeholder="Name">
+				<input type="text" id="name" name="name" class="form-control" placeholder="Name">
 			</div>
 			<div class="form-group">
 				<button id="register-button" class="btn">회원가입</button>
