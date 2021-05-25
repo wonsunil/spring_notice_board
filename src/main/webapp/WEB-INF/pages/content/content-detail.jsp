@@ -37,11 +37,12 @@
 				<input type="date" id="date" name="writtenDate" class="form-control"
 					readonly value="${content.getWrittenDate()}">
 			</div>
-			<c:if test="${!empty user}">
-				<div class="form-group">
+			<div class="form-group">
+				<c:if test="${!empty user}">
 					<button class="btn btn-primary">수정하기</button>
-				</div>
-			</c:if>
+				</c:if>
+				<a class="btn btn-primary" href="/index">홈</a>
+			</div>
 		</div>
 	</div>
 </body>
