@@ -13,7 +13,6 @@ body {
 #wrap {
 	height: 100%;
 	margin: auto;
-	background: #ededed;
 	display: grid;
 	grid-template-columns: 25% 75%;
 	background: rgb(255, 255, 255);
@@ -118,4 +117,5 @@ header {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
+	text-align: left;
 }

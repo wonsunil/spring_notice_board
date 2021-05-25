@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="/css/form.css">
 </head>
 <body>
-	<div id="wrap">
+	<div id="wrap" class="login">
 		<div id="form-blind">
 			<div>
 				<h2 id="blind-title">Welcome!</h2>
