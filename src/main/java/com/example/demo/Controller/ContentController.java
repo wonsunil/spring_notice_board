@@ -70,7 +70,7 @@ public class ContentController {
 	}
 	
 	@PostMapping("/{contentId}/update")
-	public String contentUpdate(@PathVariable(name = "contentId") int contentId, @RequestParam Map<String, String> params) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, IndexOutOfBoundsException {
+	public String contentUpdate(@PathVariable(name = "contentId") int contentId, @RequestParam Map<String, String> params) throws InvocationTargetException, IllegalAccessException {
 		Content content = contentService.findById(contentId);
 		
 		Method[] methods = content.getClass().getMethods();
