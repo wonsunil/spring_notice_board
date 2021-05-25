@@ -80,7 +80,7 @@ public class ContentController {
 		Arrays.stream(methods).filter(method -> method.getName().startsWith("set")).forEach(setters::add);
 		setters.forEach(setter -> setterNames.add(setter.getName()));
 		
-		List<String> keys = new ArrayList<String>(params.keySet());
+		List<String> keys = new ArrayList<>(params.keySet());
 
 		for(String key : keys) {
 			String value = params.get(key);
