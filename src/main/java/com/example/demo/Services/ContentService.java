@@ -18,11 +18,13 @@ import com.example.demo.Repository.ContentRepository;
 @Service
 public class ContentService {
 	ContentRepository contentRepository;
+	ContentBackupRepository contentBackupRepository;
 
-	public ContentService(ContentRepository contentRepository) {
+	public ContentService(ContentRepository contentRepository, ContentBackupRepository contentBackupRepository) {
 		this.contentRepository = contentRepository;
-	};
-	
+		this.contentBackupRepository = contentBackupRepository;
+	}
+
 	public void write(@ModelAttribute Content content) {
 		contentRepository.save(content);
 	};
