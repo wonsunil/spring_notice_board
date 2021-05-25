@@ -77,7 +77,7 @@ public class ContentController {
 		List<Method> setters = new ArrayList<>();
 		List<String> setterNames = new ArrayList<>();
 		
-		Arrays.stream(methods).filter(method -> method.getName().startsWith("set")).forEach(method -> setters.add(method));
+		Arrays.stream(methods).filter(method -> method.getName().startsWith("set")).forEach(setters::add);
 		setters.forEach(setter -> setterNames.add(setter.getName()));
 		
 		List<String> keys = new ArrayList<String>(params.keySet());
