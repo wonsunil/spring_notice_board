@@ -18,7 +18,7 @@
 						<img src="${user.getProfileImage()}" id="profile-image">
 					</div>
 					<hr>
-					<a href="/user/${user.getId()}/profile/">About Me</a><br>
+					<a href="/user/${user.getId()}/profile/">프로필</a><br>
 					<a href="/user/logout">로그아웃</a>
 				</div>
 			</c:otherwise>

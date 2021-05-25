@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="/css/detail.css"/>
 </head>
 <body>
-<div id="wrap">
+<div id="wrap" style="background: white;">
     <div class="form content">
         <div class="form-group">
             <label for="title">제목</label>

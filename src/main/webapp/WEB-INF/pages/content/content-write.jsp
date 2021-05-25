@@ -12,7 +12,7 @@
 	crossorigin="anonymous">
 <link rel="stylesheet" href="/css/form.css" />
 </head>
-<body>
+<body style="background: white;">
 	<div id="wrap">
 		<form method="POST" action="/content/write" class="form content">
 			<div class="form-group">
