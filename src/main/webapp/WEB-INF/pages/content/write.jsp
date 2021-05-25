@@ -30,6 +30,7 @@
 			</div>
 			<div class="form-group">
 				<button class="btn btn-primary">글쓰기</button>
+				<a href="/index" class="btn btn-primary">취소</a>
 			</div>
 		</form>
 	</div>
