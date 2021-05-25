@@ -62,7 +62,7 @@ public class AccountController {
 
 		session.setAttribute("user", findUser);
 
-		return "/";
+		return "redirect:/";
 	}
 	
 	@GetMapping("/user/logout")
