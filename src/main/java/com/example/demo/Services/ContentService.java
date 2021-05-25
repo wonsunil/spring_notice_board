@@ -28,7 +28,5 @@ public class ContentService {
 		return contentRepository.findByContentId(id);
 	};
 	
-	public List<Content> getAllContents() {
-		return contentRepository.findAll();
-	};
+	public List<Content> getAllContents() { return contentRepository.findAll(); };
 }
