@@ -82,11 +82,11 @@ public class ContentController {
 		
 		List<String> keys = new ArrayList<String>(params.keySet());
 
-		for(int i = 0, limit = keys.size(); i < limit; i++) {
-			String value = params.get(keys.get(i));
-			char[] nameArray = keys.get(i).toString().toCharArray();
+		for(String key : keys) {
+			String value = params.get(key);
+			char[] nameArray = key.toCharArray();
 			nameArray[0] = Character.toUpperCase(nameArray[0]);
-			setters.get(setterNames.indexOf("set" + new String(nameArray))).invoke(content, new Object[] {value});
+			setters.get(setterNames.indexOf("set" + new String(nameArray))).invoke(content, value);
 		}
 
 		contentService.write(content);
