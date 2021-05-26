@@ -8,7 +8,7 @@
 	integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 <link rel="stylesheet" href="/css/form.css" />
 </head>
-<body>
+<body class="detail">
 	<div id="wrap">
 		<form method="POST" action="/content/write" class="form content">
 			<div class="form-group">

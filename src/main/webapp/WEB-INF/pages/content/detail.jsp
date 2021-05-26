@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="/css/form.css"/>
     <link rel="stylesheet" href="/css/detail.css"/>
 </head>
-<body>
+<body class="detail">
 <div id="wrap">
     <div class="form content">
         <div class="form-group">
@@ -22,7 +22,7 @@
             <input id="writer" name="contentWriter" class="form-control" value="${content.getContentWriter()}" readonly>
         </div>
         <div class="form-group">
-            <label for="content">내용</label>
+
             <textarea id="content" name="contentContent" class="form-control" readonly>${content.getContentContent()}</textarea>
         </div>
         <div class="form-group">

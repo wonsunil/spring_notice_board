@@ -3,6 +3,21 @@ body {
 	background: linear-gradient(130deg, rgba(212, 129, 255, 1) 0%,
 		rgba(147, 158, 247, 1) 70%, rgba(138, 233, 255, 1) 85%);
 }
+body.detail{
+	background: none;
+}
+
+body.detail > #wrap{
+	width: 100%;
+	height: 100%;
+	background: #efefef;
+}
+body.detail .form{
+	height: auto;
+}
+body.detail textarea{
+	min-height: 300px !important;
+}
 
 #wrap {
 	width: 60%;
@@ -23,6 +38,15 @@ body {
 #wrap.login{
 	display: grid;
 	grid-template-columns: 40% 60%;
+	align-content: unset;
+}
+#wrap.login > .form{
+	width: 80%;
+	height: 80%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	margin: auto;
 }
 
 #form-blind {
@@ -52,6 +76,8 @@ body {
 }
 .form-group{ padding: 5px 0; }
 .form-group:last-child{ margin-top: 5px; }
+
+textarea{ resize: none; }
 
 .btn {
 	border-radius: 20px;
