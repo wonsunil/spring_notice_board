@@ -27,12 +27,12 @@
 			<div class="form-group">
 				<label for="id">Id</label>
 				<input type="text" id="id" name="id" class="form-control"
-					placeholder="Id" autofocus>
+					placeholder="Id" autofocus autocomplete="off" required>
 			</div>
 			<div class="form-group">
 				<label for="password">Password</label>
 				<input type="password" id="password" name="password"
-					class="form-control" placeholder="Password">
+					class="form-control" placeholder="Password" required>
 			</div>
 			<div class="form-group">
 				<button class="btn btn-primary">로그인</button>

@@ -13,19 +13,19 @@
 		<form method="POST" action="/content/write" class="form content">
 			<div class="form-group">
 				<label for="title">제목</label>
-				<input type="text" id="title" name="contentTitle" class="form-control" placeholder="Title" autofocus>
+				<input type="text" id="title" name="contentTitle" class="form-control" placeholder="Title" autofocus required>
 			</div>
 			<div class="form-group">
 				<label for="writer">작성자</label>
-				<input id="writer" name="contentWriter" class="form-control" value="${user.getId()}" readonly>
+				<input id="writer" name="contentWriter" class="form-control" value="${user.getId()}" readonly required>
 			</div>
 			<div class="form-group">
 				<label for="content">내용</label>
-				<textarea id="content" name="contentContent" class="form-control" placeholder="내용"></textarea>
+				<textarea id="content" name="contentContent" class="form-control" placeholder="내용" required></textarea>
 			</div>
 			<div class="form-group">
 				<label for="date">작성일</label>
-				<input type="date" id="date" name="writtenDate" class="form-control" readonly>
+				<input type="date" id="date" name="writtenDate" class="form-control" readonly required>
 			</div>
 			<div class="form-group">
 				<button class="btn btn-primary">글쓰기</button>

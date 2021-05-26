@@ -19,7 +19,7 @@
             <form action="/content/${content.getContentId()}/update" method="POST" class="form content">
                 <div class="form-group">
                     <label for="title">제목</label>
-                    <input type="text" id="title" name="contentTitle" class="form-control" value="${content.getContentTitle()}">
+                    <input type="text" id="title" name="contentTitle" class="form-control" value="${content.getContentTitle()}" required>
                 </div>
                 <div class="form-group">
                     <label for="writer">작성자</label>
@@ -27,11 +27,11 @@
                 </div>
                 <div class="form-group">
                     <label for="content">내용</label>
-                    <textarea id="content" name="contentContent" class="form-control" placeholder="내용">${content.getContentContent()}</textarea>
+                    <textarea id="content" name="contentContent" class="form-control" placeholder="내용" required>${content.getContentContent()}</textarea>
                 </div>
                 <div class="form-group">
                     <label for="date">작성일</label>
-                    <input type="date" id="date" name="writtenDate" class="form-control" value="${content.getWrittenDate()}">
+                    <input type="date" id="date" name="writtenDate" class="form-control" value="${content.getWrittenDate()}" readonly>
                 </div>
                 <div class="form-group">
                     <button class="btn btn-primary">저장하기</button>
