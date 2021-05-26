@@ -2,10 +2,8 @@ package com.example.demo.Services;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import com.example.demo.Model.Content;
 import com.example.demo.Model.ContentBackup;
@@ -52,27 +50,20 @@ public class ContentService {
 		contentRepository.save(content);
 	}
 
-	public void remove(int contentId) throws InvocationTargetException, IllegalAccessException {
+	public void remove(int contentId, String writer) throws InvocationTargetException, IllegalAccessException {
 		Content content = contentRepository.findByContentId(contentId);
 
 		if(!content.getContentWriter().equals(writer)) return;
 
 		ContentBackup contentBackup = new ContentBackup();
-
 		contentBackup.setDeletedDate(new Date().toString());
 
 		Method[] methods = content.getClass().getMethods();
-		List<Method> getters = new ArrayList<>();
-		List<String> getterNames = new ArrayList<>();
+		List<Method> getters = Arrays.stream(methods).filter(method -> method.getName().startsWith("get")).collect(Collectors.toList());
+		List<String> getterNames = getters.stream().map(Method::getName).collect(Collectors.toList());
 
-		Arrays.stream(methods).filter(method -> method.getName().startsWith("get")).forEach(getters::add);
-		getters.stream().map(Method::getName).forEach(getterNames::add);
-
-		List<Method> setters = new ArrayList<>();
-		List<String> setterNames = new ArrayList<>();
-
-		Arrays.stream(contentBackup.getClass().getMethods()).filter(method -> method.getName().startsWith("set") && !method.getName().equals("setDeletedDate") && !method.getName().equals("setDeletedId")).forEach(setters::add);
-		setters.stream().map(Method::getName).forEach(setterNames::add);
+		List<Method> setters = Arrays.stream(contentBackup.getClass().getMethods()).filter(method -> method.getName().startsWith("set") && !method.getName().equals("setDeletedDate") && !method.getName().equals("setDeletedId")).collect(Collectors.toList());
+		List<String> setterNames = setters.stream().map(Method::getName).collect(Collectors.toList());
 
 		for(String setter: setterNames) {
 			setters.get(setterNames.indexOf(setter)).invoke(contentBackup, getters.get(getterNames.indexOf(setter.replace("set", "get"))).invoke(content));
