@@ -55,8 +55,18 @@ public class AccountController {
     }
 
     @PostMapping("/login")
-    public String login(Model model, @ModelAttribute User user, HttpSession session) {
+    public String login(Model model, @ModelAttribute User user, HttpSession session, HttpServletResponse response) throws IOException {
+        User findUserById = accountService.findById(user.getId()).orElse(null);
+
+        if(findUserById == null) {
+            function.alert("존재하지 않는 아이디입니다", "/login", response);
+        }
+
         User findUser = accountService.login(user);
+
+        if(findUser == null) {
+            function.alert("비밀번호가 틀렸습니다", "/login", response);
+        }
 
         model.addAttribute("user", findUser);
 
