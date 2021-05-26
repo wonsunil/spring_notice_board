@@ -30,6 +30,28 @@ public class ContentService {
 		contentRepository.save(content);
 	}
 
+	public void update(int contentId, Map<String, String> params, String writer) throws InvocationTargetException, IllegalAccessException {
+		Content content = contentRepository.findById(contentId).orElse(null);
+
+		assert content != null;
+		if(!content.getContentWriter().equals(writer)) return;
+
+		Method[] methods = content.getClass().getMethods();
+		List<Method> setters = Arrays.stream(methods).filter(method -> method.getName().startsWith("set")).collect(Collectors.toList());
+		List<String> setterNames = setters.stream().map(Method::getName).collect(Collectors.toList());
+
+		List<String> keys = new ArrayList<>(params.keySet());
+
+		for(String key : keys) {
+			String value = params.get(key);
+			char[] nameArray = key.toCharArray();
+			nameArray[0] = Character.toUpperCase(nameArray[0]);
+			setters.get(setterNames.indexOf("set" + new String(nameArray))).invoke(content, value);
+		}
+
+		contentRepository.save(content);
+	}
+
 	public void remove(int contentId) throws InvocationTargetException, IllegalAccessException {
 		Content content = contentRepository.findByContentId(contentId);
 
