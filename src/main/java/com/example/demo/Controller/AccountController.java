@@ -21,68 +21,68 @@ import com.example.demo.Services.AccountService;
 
 @Controller
 public class AccountController {
-	private final AccountService accountService;
-	private final Function function = new Function();
-	
-	public AccountController(AccountService accountService) {
-		this.accountService = accountService;
-	}
-	
-	@GetMapping("/register")
-	public String register() {
-		return "pages/account/register";
-	}
-	
-	@PostMapping("/register")
-	public void register(@ModelAttribute User user, HttpServletResponse response) throws IOException {
-		Boolean result = accountService.register(user);
-		
-		if(result) {
-			function.alert("회원가입되었습니다.", "/index", response);			
-		}else {
-			function.alert("중복된 아이디입니다.", "/register", response);
-		}
-	}
-	
-	@GetMapping("/login")
-	public String login() {
-		return "pages/account/login";
-	}
+    private final AccountService accountService;
+    private final Function function = new Function();
 
-	@PostMapping("/login-check")
-	public Boolean loginCheck(@ModelAttribute User user) {
-		return !Objects.isNull(accountService.login(user));
-	}
+    public AccountController(AccountService accountService) {
+        this.accountService = accountService;
+    }
 
-	@PostMapping("/login")
-	public String login(Model model, @ModelAttribute User user, HttpSession session) {
-		 User findUser = accountService.login(user);
+    @GetMapping("/register")
+    public String register() {
+        return "pages/account/register";
+    }
 
-		model.addAttribute("user", findUser);
+    @PostMapping("/register")
+    public void register(@ModelAttribute User user, HttpServletResponse response) throws IOException {
+        Boolean result = accountService.register(user);
 
-		session.setAttribute("user", findUser);
+        if (result) {
+            function.alert("회원가입되었습니다.", "/index", response);
+        } else {
+            function.alert("중복된 아이디입니다.", "/register", response);
+        }
+    }
 
-		return "redirect:/";
-	}
-	
-	@GetMapping("/user/logout")
-	public String logout(HttpSession session) {
-		session.setAttribute("user", null);
-		
-		return "redirect:/";
-	}
-	
-	@GetMapping("/user/{id}/profile")
-	public String profilePage(@PathVariable(value = "id") String id, Model model) {
-		User user = accountService.findById(id).orElse(null);
-		model.addAttribute("user", user);
-		
-		return "pages/account/profile";
-	}
+    @GetMapping("/login")
+    public String login() {
+        return "pages/account/login";
+    }
 
-	@GetMapping("/users")
-	@ResponseBody
-	public List<User> getAllUsers() {
-		return accountService.findAll();
-	}
+    @PostMapping("/login-check")
+    public Boolean loginCheck(@ModelAttribute User user) {
+        return !Objects.isNull(accountService.login(user));
+    }
+
+    @PostMapping("/login")
+    public String login(Model model, @ModelAttribute User user, HttpSession session) {
+        User findUser = accountService.login(user);
+
+        model.addAttribute("user", findUser);
+
+        session.setAttribute("user", findUser);
+
+        return "redirect:/";
+    }
+
+    @GetMapping("/user/logout")
+    public String logout(HttpSession session) {
+        session.setAttribute("user", null);
+
+        return "redirect:/";
+    }
+
+    @GetMapping("/user/{id}/profile")
+    public String profilePage(@PathVariable(value = "id") String id, Model model) {
+        User user = accountService.findById(id).orElse(null);
+        model.addAttribute("user", user);
+
+        return "pages/account/profile";
+    }
+
+    @GetMapping("/users")
+    @ResponseBody
+    public List<User> getAllUsers() {
+        return accountService.findAll();
+    }
 }
