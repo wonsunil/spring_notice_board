@@ -5,3 +5,5 @@ textarea{
 	min-height: 100px !important;
 }
 textarea::-webkit-scrollbar{ display: none; }
+
+input[readonly], textarea[readonly] { background: #fff !important; }

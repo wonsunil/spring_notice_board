@@ -14,6 +14,10 @@ body {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-content: center;
 }
 
 #wrap.login{
@@ -45,14 +49,9 @@ body {
 .form {
 	width: 60%;
 	height: 80%;
-	margin: auto;
 }
 .form-group{ padding: 5px 0; }
 .form-group:last-child{ margin-top: 5px; }
-
-.content{
-	margin: 20% auto;
-}
 
 .btn {
 	border-radius: 20px;
