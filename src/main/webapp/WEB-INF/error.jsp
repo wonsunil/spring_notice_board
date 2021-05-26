@@ -6,7 +6,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	Error page!<br>
-	123
+	Error page!
 </body>
 </html>
