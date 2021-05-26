@@ -23,14 +23,14 @@ public class MainController {
 	public String main(HttpSession session, Model model) {
 		if(session.getAttribute("user") != null) {
 			model.addAttribute("user", session.getAttribute("user"));
-		};
+		}
 		
 		List<Content> contents = contentService.getAllContents();
 		
 		if(contents.size() != 0) {
 			model.addAttribute("contents", contents);
-		};
+		}
 		
 		return "index";
-	};
+	}
 }
