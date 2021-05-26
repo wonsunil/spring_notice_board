@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.example.demo.Model.ContentBackup;
+import com.example.demo.Model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -89,8 +90,6 @@ public class ContentController {
 		if(user != null) {
 			contentService.update(contentId, params, user.getId());
 		}
-
-		contentService.write(content);
 
 		return "redirect:/";
 	}
