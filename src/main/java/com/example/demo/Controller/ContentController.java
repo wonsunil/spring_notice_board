@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import com.example.demo.Model.ContentBackup;
 import com.example.demo.Model.User;
+import com.example.demo.Services.AccountService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,10 +29,12 @@ import com.example.demo.Function;
 @Controller
 @RequestMapping("/content")
 public class ContentController {
+	private final AccountService accountService;
 	private final ContentService contentService;
 	private final Function function = new Function();
 
-	public ContentController(ContentService contentService) {
+	public ContentController(AccountService accountService, ContentService contentService) {
+		this.accountService = accountService;
 		this.contentService = contentService;
 	}
 
@@ -78,8 +81,20 @@ public class ContentController {
 	}
 
 	@GetMapping("/{id}/update")
-	public String contentUpdatePage(@PathVariable(name = "id") int id, Model model) {
-		model.addAttribute("content", contentService.findById(id));
+	public String contentUpdatePage(@PathVariable(name = "id") int id, Model model, HttpSession session, HttpServletResponse response) throws IOException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+		Content content = contentService.findById(id);
+
+		if(session.getAttribute("user") == null) {
+			function.alert("로그인한 유저만 이용가능한 기능입니다", "/login", response);
+		}
+
+		User user = (User) session.getAttribute("user");
+
+		if(!user.getId().equals(content.getContentWriter())) {
+			function.alert("본인의 게시글만 수정가능합니다", "/content/" + content.getContentId(), response);
+		}
+
+		model.addAttribute("content", content);
 
 		return "pages/content/update";
 	}
