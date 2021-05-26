@@ -35,7 +35,7 @@
                 </div>
                 <div class="form-group">
                     <button class="btn btn-primary">저장하기</button>
-                    <a href="/index" class="btn btn-primary">취소</a>
+                    <a href="/content/${content.getContentId()}" class="btn btn-primary">취소</a>
                 </div>
             </form>
         </c:otherwise>
