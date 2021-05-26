@@ -15,7 +15,7 @@
 	<div id="wrap" class="login">
 		<div id="form-blind">
 			<div>
-				<h2 id="blind-title">Welcome</h2>
+				<h2 id="blind-title">Welcome!</h2>
 				<p>아직 계정이 없으신가요?</p>
 			</div>
 			<a id="register-button" class="btn blind-btn" href="/register">회원가입</a>
