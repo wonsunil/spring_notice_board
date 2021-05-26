@@ -2,7 +2,7 @@
 	margin: 0;
 	padding: 0;
 	text-align: center;
-	text-decoration: none;
+	text-decoration: none !important;
 	color: #333;
 }
 
@@ -48,6 +48,12 @@ header {
 }
 
 #profile #profile-name > p{ color: white; }
+
+#inner-profile hr{
+	height: 3px;
+	color: #fff;
+	opacity: 0.8;
+}
 
 #non-login {
 	height: 100%;
