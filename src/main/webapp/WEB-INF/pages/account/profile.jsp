@@ -10,9 +10,9 @@
 </head>
 <body>
 <c:choose>
-    <c:when test="${!empty user}">
-        아이디 : <c:out value="${user.getId()}"/><br>
-        이름 : <c:out value="${user.getName()}"/>
+    <c:when test="${!empty findUser}">
+        아이디 : <c:out value="${findUser.getId()}"/><br>
+        이름 : <c:out value="${fidnUser.getName()}"/>
     </c:when>
     <c:otherwise>
         <p>존재하지 않는 유저입니다.</p>

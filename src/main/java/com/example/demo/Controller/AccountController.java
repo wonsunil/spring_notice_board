@@ -75,7 +75,7 @@ public class AccountController {
     @GetMapping("/user/{id}/profile")
     public String profilePage(@PathVariable(value = "id") String id, Model model) {
         User user = accountService.findById(id).orElse(null);
-        model.addAttribute("user", user);
+        model.addAttribute("findUser", user);
 
         return "pages/account/profile";
     }
