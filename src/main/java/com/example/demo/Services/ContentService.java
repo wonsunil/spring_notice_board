@@ -25,12 +25,17 @@ public class ContentService {
 		this.contentBackupRepository = contentBackupRepository;
 	}
 
-	public void write(@ModelAttribute Content content) {
+	public void write(Content content, String writer) {
+		if(!content.getContentWriter().equals(writer)) return;
+
 		contentRepository.save(content);
 	}
 
 	public void remove(int contentId) throws InvocationTargetException, IllegalAccessException {
 		Content content = contentRepository.findByContentId(contentId);
+
+		if(!content.getContentWriter().equals(writer)) return;
+
 		ContentBackup contentBackup = new ContentBackup();
 
 		contentBackup.setDeletedDate(new Date().toString());

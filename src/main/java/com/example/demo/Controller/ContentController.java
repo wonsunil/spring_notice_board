@@ -61,8 +61,11 @@ public class ContentController {
 	}
 
 	@PostMapping("/write")
-	public String write(@ModelAttribute Content content) {
-		contentService.write(content);
+	public String write(@ModelAttribute Content content, HttpSession session) {
+		User user = (User) session.getAttribute("user");
+		if(user != null) {
+			contentService.write(content, user.getId());
+		}
 
 		return "redirect:/";
 	}
@@ -84,23 +87,10 @@ public class ContentController {
 	}
 
 	@PostMapping("/{contentId}/update")
-	public String contentUpdate(@PathVariable(name = "contentId") int contentId, @RequestParam Map<String, String> params) throws InvocationTargetException, IllegalAccessException {
-		Content content = contentService.findById(contentId);
-
-		Method[] methods = content.getClass().getMethods();
-		List<Method> setters = new ArrayList<>();
-		List<String> setterNames = new ArrayList<>();
-
-		Arrays.stream(methods).filter(method -> method.getName().startsWith("set")).forEach(setters::add);
-		setters.stream().map(Method::getName).forEach(setterNames::add);
-
-		List<String> keys = new ArrayList<>(params.keySet());
-
-		for(String key : keys) {
-			String value = params.get(key);
-			char[] nameArray = key.toCharArray();
-			nameArray[0] = Character.toUpperCase(nameArray[0]);
-			setters.get(setterNames.indexOf("set" + new String(nameArray))).invoke(content, value);
+	public String contentUpdate(@PathVariable(name = "contentId") int contentId, @RequestParam Map<String, String> params, HttpSession session) throws InvocationTargetException, IllegalAccessException {
+		User user = (User) session.getAttribute("user");
+		if(user != null) {
+			contentService.update(contentId, params, user.getId());
 		}
 
 		contentService.write(content);
@@ -108,9 +98,12 @@ public class ContentController {
 		return "redirect:/";
 	}
 
-	@PostMapping("/{contentId}/delete")
-	public String contentDelete(@PathVariable(name = "contentId") int contentId) throws InvocationTargetException, IllegalAccessException {
-		contentService.remove(contentId);
+	@GetMapping("/{contentId}/delete")
+	public String contentDelete(@PathVariable(name = "contentId") int contentId, HttpSession session) throws InvocationTargetException, IllegalAccessException {
+		User user = (User) session.getAttribute("user");
+		if(user != null) {
+			contentService.remove(contentId, user.getId());
+		}
 
 		return "redirect:/";
 	}
