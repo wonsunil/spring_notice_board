@@ -8,6 +8,12 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/index.css">
+
+    <script src="/js/jszip.min.js"></script>
+    <script src="/js/realgridjs-lic.js"></script>
+    <script src="/js/realgridjs_eval.1.1.37.min.js"></script>
+    <script src="/js/realgridjs-api.1.1.37.js"></script>
+    <script src="/js/index.js" defer></script>
 </head>
 <body>
 <div id="wrap">
@@ -34,6 +40,7 @@
             </div>
         </div>
         <%@ include file="./html/footer.jsp" %>
+        <div id="realgrid" style="width: 100%; height: 200px;"></div>
     </div>
 </div>
 </body>
