@@ -29,9 +29,8 @@ public class ContentService {
 	}
 
 	public void update(int contentId, Map<String, String> params, String writer) throws InvocationTargetException, IllegalAccessException {
-		Content content = contentRepository.findById(contentId).orElse(null);
+		Content content = contentRepository.findByContentId(contentId);
 
-		assert content != null;
 		if(!content.getContentWriter().equals(writer)) return;
 
 		Method[] methods = content.getClass().getMethods();
