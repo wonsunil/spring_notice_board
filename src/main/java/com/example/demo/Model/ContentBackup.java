@@ -26,7 +26,7 @@ public class ContentBackup {
     @Column(name = "content_writer", nullable = false)
     private String contentWriter;
 
-    @Column(name = "content_content", nullable = false)
+    @Column(columnDefinition = "content_content long")
     private String contentContent;
 
     @Column(name = "written_date", nullable = false)
