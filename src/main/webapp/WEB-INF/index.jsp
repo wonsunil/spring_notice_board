@@ -40,7 +40,7 @@
             </div>
         </div>
         <%@ include file="./html/footer.jsp" %>
-        <div id="realgrid" style="width: 100%; height: 200px;"></div>
+        <div id="realgrid" style="width: 100%; height: 500px;"></div>
     </div>
 </div>
 </body>
