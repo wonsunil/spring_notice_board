@@ -1,5 +1,8 @@
-let gridView;
-let dataProvider;
+const gridView = new RealGridJS.GridView("realgrid");
+const dataProvider = new RealGridJS.LocalDataProvider();
+
+gridView.setStateBar({ visible: false });
+gridView.setCheckBar({ visible: false });
 
 RealGridJS.setRootContext("/js");
 
@@ -66,10 +69,9 @@ const data = [];
             }, []).forEach(content => data.push(content));
         });
 
-    dataProvider = new RealGridJS.LocalDataProvider();
     dataProvider.setFields(fields);
     dataProvider.setRows(data);
-    gridView = new RealGridJS.GridView("realgrid");
+
     gridView.setColumns(columns);
     gridView.setDataSource(dataProvider);
 })();
