@@ -26,7 +26,7 @@ const columns = [
         header:{
             text: "번호",
         },
-        width: 50,
+        width: 100,
         fieldName: "number",
         name: "number"
     },
@@ -34,7 +34,7 @@ const columns = [
         header: {
             text: "작성자",
         },
-        width: 50,
+        width: 100,
         fieldName: "writer",
         name: "writer"
     },
@@ -42,7 +42,7 @@ const columns = [
         header: {
             text: "제목",
         },
-        width: 50,
+        width: 100,
         fieldName: "title",
         name: "title"
     },
@@ -50,7 +50,7 @@ const columns = [
         header: {
             text: "내용",
         },
-        width: 100,
+        width: 400,
         fieldName: "content",
         name: "content"
     }
