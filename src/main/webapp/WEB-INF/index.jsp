@@ -29,10 +29,10 @@
                     <c:forEach var="content" items="${contents}">
                         <div class="content">
                             <div class="content-title">
-                                <a href="/content/${content.getContentId()}"><c:out value="${content.getContentTitle()}"/></a>
+                                <a href="/content/${content.getContentId()}">${content.getContentTitle()}</a>
                             </div>
-                            <div class="content-writer"><c:out value="${content.getContentWriter()}"/></div>
-                            <div class="content-content"><c:out value="${content.getContentContent()}"/></div>
+                            <div class="content-writer">${content.getContentWriter()}</div>
+                            <div class="content-content">${content.getContentContent()}</div>
                         </div>
                         <hr>
                     </c:forEach>
