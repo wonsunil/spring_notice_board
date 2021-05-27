@@ -37,10 +37,14 @@
                         <hr>
                     </c:forEach>
                 </c:if>
+                <div id="button-box">
+                    <button id="prev">이전</button>
+                    <button id="next">다음</button>
+                </div>
+                <div id="realgrid" style="width: 100%; height: 300px;"></div>
             </div>
         </div>
         <%@ include file="./html/footer.jsp" %>
-        <div id="realgrid" style="width: 100%; height: 500px;"></div>
     </div>
 </div>
 </body>

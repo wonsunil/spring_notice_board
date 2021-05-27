@@ -50,13 +50,15 @@ const columns = [
         header: {
             text: "내용",
         },
-        width: 400,
+        width: 280,
         fieldName: "content",
         name: "content"
     }
 ];
 
 const data = [];
+let current = 0;
+let total = 0;
 
 (async () => {
     await fetch("/content/contents")
@@ -74,4 +76,18 @@ const data = [];
 
     gridView.setColumns(columns);
     gridView.setDataSource(dataProvider);
+    gridView.setPaging(true, 10);
+    total = gridView.getPageCount() - 1;
 })();
+
+const $prev = document.querySelector("#prev");
+$prev.addEventListener("click", () => {
+    current = current - 1 < 0 ? 0 : current - 1;
+    gridView.setPage(current);
+});
+
+const $next = document.querySelector("#next");
+$next.addEventListener("click", () => {
+    current = current + 1 > total ? total : current + 1;
+    gridView.setPage(current);
+});
