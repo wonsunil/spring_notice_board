@@ -58,7 +58,7 @@ public class AccountController {
         return user.isPresent();
     }
 
-    @PostMapping("/login-check")
+    @PostMapping("/user/login-check")
     public Boolean loginCheck(@ModelAttribute User user) {
         return !Objects.isNull(accountService.login(user));
     }
