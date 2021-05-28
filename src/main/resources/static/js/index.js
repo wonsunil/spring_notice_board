@@ -82,12 +82,10 @@ let total = 0;
 
 const $prev = document.querySelector("#prev");
 $prev.addEventListener("click", () => {
-    current = current - 1 < 0 ? 0 : current - 1;
-    gridView.setPage(current);
+    gridView.setPage(current = current - 1 < 0 ? 0 : current - 1);
 });
 
 const $next = document.querySelector("#next");
 $next.addEventListener("click", () => {
-    current = current + 1 > total ? total : current + 1;
-    gridView.setPage(current);
+    gridView.setPage(current = current + 1 > total ? total : current + 1);
 });
