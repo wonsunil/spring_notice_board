@@ -3,6 +3,7 @@ package com.example.demo.Controller;
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -47,6 +48,14 @@ public class AccountController {
     @GetMapping("/login")
     public String login() {
         return "pages/account/login";
+    }
+
+    @PostMapping("/user/{id}/check")
+    @ResponseBody
+    public Boolean userIdExistenceCheck(@PathVariable(value = "id") String id) {
+        Optional<User> user = accountService.findById(id);
+
+        return user.isPresent();
     }
 
     @PostMapping("/login-check")
