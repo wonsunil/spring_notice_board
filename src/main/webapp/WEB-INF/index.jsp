@@ -25,18 +25,27 @@
                 <a href="/content/write" id="content-write" class="btn btn-primary">글쓰기</a>
             </div>
             <div id="content-body">
-                <c:if test="${!empty contents}">
-                    <c:forEach var="content" items="${contents}">
-                        <div class="content">
-                            <div class="content-title">
-                                <a href="/content/${content.getContentId()}">${content.getContentTitle()}</a>
-                            </div>
-                            <div class="content-writer">${content.getContentWriter()}</div>
-                            <div class="content-content">${content.getContentContent()}</div>
-                        </div>
-                        <hr>
-                    </c:forEach>
-                </c:if>
+<%--                <c:if test="${!empty contents}">--%>
+<%--                    <c:forEach var="content" items="${contents}">--%>
+<%--                        <div class="content">--%>
+<%--                            <div class="content-title">--%>
+<%--                                <a href="/content/${content.getContentId()}">${content.getContentTitle()}</a>--%>
+<%--                            </div>--%>
+<%--                            <div class="content-writer">${content.getContentWriter()}</div>--%>
+<%--                            <div class="content-content">${content.getContentContent()}</div>--%>
+<%--                        </div>--%>
+<%--                        <hr>--%>
+<%--                    </c:forEach>--%>
+<%--                </c:if>--%>
+                <div id="search-box">
+                    <select name="" id="search-column">
+                        <option value="number">번호</option>
+                        <option value="writer">작성자</option>
+                        <option value="title">제목</option>
+                        <option value="content">내용</option>
+                    </select>
+                    <input type="text" placeholder="제목" id="search-input">
+                </div>
                 <div id="button-box">
                     <button id="prev">이전</button>
                     <button id="next">다음</button>

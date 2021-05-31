@@ -59,6 +59,8 @@ const columns = [
 const data = [];
 let current = 0;
 let total = 0;
+let searchIndex = -1;
+let column = "number";
 
 (async () => {
     await fetch("/content/contents")
@@ -83,9 +85,45 @@ let total = 0;
 const $prev = document.querySelector("#prev");
 $prev.addEventListener("click", () => {
     gridView.setPage(current = current - 1 < 0 ? 0 : current - 1);
+
+    searchIndex = -1;
+    gridView.setCurrent({
+        itemIndex: searchIndex,
+        column: "number",
+    });
 });
 
 const $next = document.querySelector("#next");
 $next.addEventListener("click", () => {
     gridView.setPage(current = current + 1 > total ? total : current + 1);
+
+    searchIndex = -1;
+    gridView.setCurrent({
+        itemIndex: searchIndex,
+        column: "number",
+    });
+});
+
+const $searchColumn = document.querySelector("#search-column");
+$searchColumn.addEventListener("change", ({ target: { value } }) => {
+    column = value;
+});
+
+const $search = document.querySelector("#search-input");
+$search.addEventListener("keyup", ({ target: { value }, key }) => {
+    if(key !== "Enter") return;
+
+    searchIndex = gridView.searchItem({
+        fields: [column],
+        values: [value],
+        startIndex: searchIndex + 1,
+        partialMatch: column === "content",
+    });
+
+    if(searchIndex < 0) return;
+
+    gridView.setCurrent({
+        itemIndex: searchIndex,
+        column: column,
+    });
 });
