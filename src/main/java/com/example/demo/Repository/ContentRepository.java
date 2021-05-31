@@ -11,4 +11,5 @@ import com.example.demo.Model.Content;
 public interface ContentRepository extends JpaRepository<Content, Integer> {
 	public Content findByContentId(int contentId);
 	public List<Content> findAll();
+	public List<Content> findAllOrderByOrderByContentIdDesc();
 }

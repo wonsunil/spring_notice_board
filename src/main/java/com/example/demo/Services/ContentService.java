@@ -75,6 +75,6 @@ public class ContentService {
 
 	public Content findById(int id) { return contentRepository.findByContentId(id); }
 
-	public List<Content> getAllContents() { return contentRepository.findAll(); }
+	public List<Content> getAllContents() { return contentRepository.findAllOrderByOrderByContentIdDesc(); }
 	public List<ContentBackup> getAllContentBackups() { return contentBackupRepository.findAll(); }
 }
