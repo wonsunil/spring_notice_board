@@ -106,14 +106,6 @@ $next.addEventListener("click", () => {
     });
 });
 
-const $searchColumn = document.querySelector("#search-column");
-column = $searchColumn?.value;
-
-$searchColumn.addEventListener("change", ({ target: { value } }) => {
-    column = value;
-    searchIndex = -1;
-});
-
 const searchItem = (field, value, startIndex, partialMatch) => gridView.searchItem({ fields: [field], values: [value], startIndex: startIndex, partialMatch: partialMatch });
 const getColumnIndex = columnName => {
     let index = 0;
@@ -148,6 +140,20 @@ const getLastIndex = text => {
 };
 
 const $search = document.querySelector("#search-input");
+const $searchColumn = document.querySelector("#search-column");
+column = $searchColumn?.value;
+
+$searchColumn.addEventListener("change", ({ target: { value } }) => {
+    $search.value = "";
+    column = value;
+    searchIndex = -1;
+    gridView.setCurrent({
+        itemIndex: searchIndex,
+        column: column,
+        dataRow: 0,
+    });
+});
+
 $search.addEventListener("keyup", ({ target: { value }, key }) => {
     if(key !== "Enter") return;
 
@@ -187,6 +193,7 @@ $search.addEventListener("keyup", ({ target: { value }, key }) => {
 
         check = true;
     };
+
     if(searchIndex < 0) return;
 
     setCurrent(searchIndex, column);
