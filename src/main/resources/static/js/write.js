@@ -1,18 +1,18 @@
-const $form = document.forms[0];
-$form.addEventListener("submit", event => {
+const $form = $("form");
+$form.on("submit", event => {
     event.preventDefault();
 
-    if($form.title.value === "") {
+    if($form.find("#title").val() === "") {
         alert("제목을 입력해주세요");
 
-        return $form.title.focus();
+        return $form.find("#title").focus();
     };
 
-    if($form.content.value === "") {
+    if($form.find("#content").val() === "") {
         alert("내용을 입력해주세요");
 
-        return $form.content.focus();
+        return $form.find("#content").focus();
     };
 
-    return $form.submit();
+    return $form[0].submit();
 });
