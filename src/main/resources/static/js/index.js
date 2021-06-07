@@ -143,8 +143,9 @@ const $search = document.querySelector("#search-input");
 const $searchColumn = document.querySelector("#search-column");
 column = $searchColumn?.value;
 
+document.querySelector("#realgrid").addEventListener("click", () => $searchColumn.value = column = gridView.getCurrent().column);
+
 $searchColumn.addEventListener("change", ({ target: { value } }) => {
-    $search.value = "";
     column = value;
     searchIndex = -1;
     gridView.setCurrent({
