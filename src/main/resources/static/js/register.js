@@ -1,32 +1,27 @@
-const $form = document.forms[0];
-$form.addEventListener("submit", event => {
+const $form = $("form");
+$form.submit(event => {
     event.preventDefault();
 
-    if($form.id.value === "") {
+    if($form.find("#id").val() === "") {
         alert("아이디를 입력해주세요");
 
-        return $form.id.focus();
+        return $form.find("#id").focus();
     };
 
-    if($form.password.value === "") {
+    if($form.find("#password").val() === "") {
         alert("비밀번호를 입력해주세요");
 
-        return $form.password.focus();
+        return $form.find("#password").focus();
     };
 
-    if($form.name.value === "") {
+    if($form.find("#name").val() === "") {
         alert("이름을 입력해주세요");
 
-        return $form.name.focus();
+        return $form.find("#name").focus();
     };
 
-    fetch(`/user/${$form.id.value}/check`, {
+    $.ajax(`/user/${$form.find("#id").val()}/check`, {
         method: "POST"
     })
-        .then(res => res.text())
-        .then(data => data === "true" ? (() => {
-            alert("중복된 아이디입니다");
-
-            return $form.id.focus();
-        })() : $form.submit());
+        .done(data => data === true ? alert("이미 존재하는 아이디입니다") : $form[0].submit());
 });

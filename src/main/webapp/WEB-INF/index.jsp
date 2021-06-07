@@ -9,6 +9,7 @@
           integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/index.css">
 
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="/js/jszip.min.js"></script>
     <script src="/js/realgridjs-lic.js"></script>
     <script src="/js/realgridjs_eval.1.1.37.min.js"></script>

@@ -65,15 +65,13 @@ let searchIndex = -1;
 let column = "number";
 
 (async () => {
-    await fetch("/content/contents")
-        .then(res => res.json())
-        .then(contents => {
-            [...contents].reduce((item, { contentId, contentTitle, contentWriter, contentContent }) => {
-                item.push([contentId, contentTitle, contentWriter, contentContent]);
+    await $.getJSON("/content/contents", contents => {
+        [...contents].reduce((item, { contentId, contentTitle, contentWriter, contentContent }) => {
+            item.push([contentId, contentTitle, contentWriter, contentContent]);
 
-                return item;
-            }, []).forEach(content => data.push(content));
-        });
+            return item;
+        }, []).forEach(content => data.push(content));
+    });
 
     dataProvider.setFields(fields);
     dataProvider.setRows(data);
@@ -84,8 +82,8 @@ let column = "number";
     total = gridView.getPageCount() - 1;
 })();
 
-const $prev = document.querySelector("#prev");
-$prev.addEventListener("click", () => {
+const $prev = $("#prev");
+$prev.click(() => {
     gridView.setPage(current = current - 1 < 0 ? 0 : current - 1);
 
     searchIndex = -1;
@@ -95,8 +93,8 @@ $prev.addEventListener("click", () => {
     });
 });
 
-const $next = document.querySelector("#next");
-$next.addEventListener("click", () => {
+const $next = $("#next");
+$next.click(() => {
     gridView.setPage(current = current + 1 > total ? total : current + 1);
 
     searchIndex = -1;
@@ -139,13 +137,13 @@ const getLastIndex = text => {
     return index;
 };
 
-const $search = document.querySelector("#search-input");
-const $searchColumn = document.querySelector("#search-column");
+const $search = $("#search-input");
+const $searchColumn = $("#search-column");
 column = $searchColumn?.value;
 
-document.querySelector("#realgrid").addEventListener("click", () => $searchColumn.value = column = gridView.getCurrent().column);
+$("#realgrid").click(() => $searchColumn.value = column = gridView.getCurrent().column);
 
-$searchColumn.addEventListener("change", ({ target: { value } }) => {
+$searchColumn.change(({ target: { value } }) => {
     column = value;
     searchIndex = -1;
     gridView.setCurrent({
@@ -155,7 +153,7 @@ $searchColumn.addEventListener("change", ({ target: { value } }) => {
     });
 });
 
-$search.addEventListener("keyup", ({ target: { value }, key }) => {
+$search.keyup(({ target: { value }, key }) => {
     if(key !== "Enter") return;
 
     searchIndex = searchItem(column, value, searchIndex + 1, column !== "number");
