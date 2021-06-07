@@ -83,7 +83,7 @@ let column = "number";
 })();
 
 const $prev = $("#prev");
-$prev.click(() => {
+$prev.on("click", () => {
     gridView.setPage(current = current - 1 < 0 ? 0 : current - 1);
 
     searchIndex = -1;
@@ -94,7 +94,7 @@ $prev.click(() => {
 });
 
 const $next = $("#next");
-$next.click(() => {
+$next.on("click", () => {
     gridView.setPage(current = current + 1 > total ? total : current + 1);
 
     searchIndex = -1;
@@ -139,11 +139,11 @@ const getLastIndex = text => {
 
 const $search = $("#search-input");
 const $searchColumn = $("#search-column");
-column = $searchColumn?.value;
+column = $searchColumn?.val();
 
-$("#realgrid").click(() => $searchColumn.value = column = gridView.getCurrent().column);
+$("#realgrid").on("click", () => $searchColumn.val(column = gridView.getCurrent().column));
 
-$searchColumn.change(({ target: { value } }) => {
+$searchColumn.on("change", ({ target: { value } }) => {
     column = value;
     searchIndex = -1;
     gridView.setCurrent({
@@ -153,7 +153,7 @@ $searchColumn.change(({ target: { value } }) => {
     });
 });
 
-$search.keyup(({ target: { value }, key }) => {
+$search.on("keyup", ({ target: { value }, key }) => {
     if(key !== "Enter") return;
 
     searchIndex = searchItem(column, value, searchIndex + 1, column !== "number");

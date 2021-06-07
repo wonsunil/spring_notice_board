@@ -1,5 +1,5 @@
 const $form = $("form");
-$form.submit(event => {
+$form.on("submit", event => {
     event.preventDefault();
 
     if($form.find("#id").val() === "") {
