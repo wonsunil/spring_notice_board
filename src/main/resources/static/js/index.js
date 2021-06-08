@@ -19,6 +19,9 @@ const fields = [
     {
         fieldName: "content"
     },
+    {
+        fieldName: "viewCount"
+    }
 ];
 
 const columns = [
@@ -53,6 +56,14 @@ const columns = [
         width: 280,
         fieldName: "content",
         name: "content"
+    },
+    {
+        header:{
+            text: "조회수",
+        },
+        width: 100,
+        fieldName: "viewCount",
+        name: "viewCount"
     }
 ];
 
@@ -68,7 +79,7 @@ let column = "number";
 (async () => {
     await $.getJSON("/content/contents", contents => {
         [...contents].reduce((item, { contentId, contentTitle, contentWriter, contentContent, viewCount }) => {
-            item.push([contentId, contentTitle, contentWriter, contentContent, viewCount]);
+            item.push([contentId, contentTitle, contentWriter, contentContent, viewCount === null ? 0 : viewCount]);
 
             return item;
         }, []).forEach(content => data.push(content));
@@ -87,7 +98,7 @@ let column = "number";
         yAxis: { title: { text: '' } },
         xAxis: {},
         legend: { layout: 'vertical', align: 'right', verticalAlign: 'middle' },
-        series: data.map(content => { return { name: content[1], data: [0, content[4] === null ? 0 : content[4]] } }),
+        series: data.map(content => { return { name: content[1], data: [0, content[4]] } }),
         responsive: {
             rules: [{
                 condition: { maxWidth: 500 },
@@ -103,8 +114,7 @@ let column = "number";
     });
 })();
 
-const $prev = $("#prev");
-$prev.on("click", () => {
+$("#prev").on("click", () => {
     gridView.setPage(current = current - 1 < 0 ? 0 : current - 1);
 
     searchIndex = -1;
@@ -114,8 +124,7 @@ $prev.on("click", () => {
     });
 });
 
-const $next = $("#next");
-$next.on("click", () => {
+$("#next").on("click", () => {
     gridView.setPage(current = current + 1 > total ? total : current + 1);
 
     searchIndex = -1;
@@ -158,7 +167,6 @@ const getLastIndex = text => {
     return index;
 };
 
-const $search = $("#search-input");
 const $searchColumn = $("#search-column");
 column = $searchColumn?.val();
 
@@ -174,7 +182,7 @@ $searchColumn.on("change", ({ target: { value } }) => {
     });
 });
 
-$search.on("keyup", ({ target: { value }, key }) => {
+$("#search-input").on("keyup", ({ target: { value }, key }) => {
     if(key !== "Enter") return;
 
     searchIndex = searchItem(column, value, searchIndex + 1, column !== "number");
