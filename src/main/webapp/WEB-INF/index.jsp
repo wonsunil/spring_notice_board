@@ -31,7 +31,10 @@
                 <a href="/content/write" id="content-write" class="btn btn-primary">글쓰기</a>
             </div>
             <div id="content-body">
-                <figure class="highcharts-figure"><div id="container"></div></figure>
+                <figure class="highcharts-figure">
+                    <div id="container"></div>
+                    <div id="container2"></div>
+                </figure>
                 <c:if test="${!empty contents}">
                     <c:forEach var="content" items="${contents}">
                         <div class="content">

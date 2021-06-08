@@ -112,6 +112,26 @@ let column = "number";
             }]
         }
     });
+
+    Highcharts.chart('container2', {
+        title: { text: '게시글 개수별 그래프' },
+        yAxis: { title: { text: '' } },
+        xAxis: {},
+        legend: { layout: 'vertical', align: 'right', verticalAlign: 'middle' },
+        series: [...new Set(data.map(content => content[2]))].map(user => { return { name: user, data: [0, data.filter(item => item[2] === user).length] } }),
+        responsive: {
+            rules: [{
+                condition: { maxWidth: 500 },
+                chartOptions: {
+                    legend: {
+                        layout: 'horizontal',
+                        align: 'center',
+                        verticalAlign: 'bottom'
+                    }
+                }
+            }]
+        }
+    });
 })();
 
 $("#prev").on("click", () => {
