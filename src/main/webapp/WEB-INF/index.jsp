@@ -14,6 +14,11 @@
     <script src="/js/realgridjs-lic.js"></script>
     <script src="/js/realgridjs_eval.1.1.37.min.js"></script>
     <script src="/js/realgridjs-api.1.1.37.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/series-label.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
     <script src="/js/index.js" defer></script>
 </head>
 <body>
@@ -26,6 +31,7 @@
                 <a href="/content/write" id="content-write" class="btn btn-primary">글쓰기</a>
             </div>
             <div id="content-body">
+                <figure class="highcharts-figure"><div id="container"></div></figure>
                 <c:if test="${!empty contents}">
                     <c:forEach var="content" items="${contents}">
                         <div class="content">

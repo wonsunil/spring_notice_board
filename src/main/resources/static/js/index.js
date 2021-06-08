@@ -57,6 +57,7 @@ const columns = [
 ];
 
 const data = [];
+const series = [];
 let check = false;
 let current = 0;
 let limit = 10;
@@ -66,8 +67,8 @@ let column = "number";
 
 (async () => {
     await $.getJSON("/content/contents", contents => {
-        [...contents].reduce((item, { contentId, contentTitle, contentWriter, contentContent }) => {
-            item.push([contentId, contentTitle, contentWriter, contentContent]);
+        [...contents].reduce((item, { contentId, contentTitle, contentWriter, contentContent, viewCount }) => {
+            item.push([contentId, contentTitle, contentWriter, contentContent, viewCount]);
 
             return item;
         }, []).forEach(content => data.push(content));
@@ -80,6 +81,26 @@ let column = "number";
     gridView.setDataSource(dataProvider);
     gridView.setPaging(true, limit);
     total = gridView.getPageCount() - 1;
+
+    Highcharts.chart('container', {
+        title: { text: '조회수별 그래프' },
+        yAxis: { title: { text: '' } },
+        xAxis: {},
+        legend: { layout: 'vertical', align: 'right', verticalAlign: 'middle' },
+        series: data.map(content => { return { name: content[1], data: [0, content[4] === null ? 0 : content[4]] } }),
+        responsive: {
+            rules: [{
+                condition: { maxWidth: 500 },
+                chartOptions: {
+                    legend: {
+                        layout: 'horizontal',
+                        align: 'center',
+                        verticalAlign: 'bottom'
+                    }
+                }
+            }]
+        }
+    });
 })();
 
 const $prev = $("#prev");
