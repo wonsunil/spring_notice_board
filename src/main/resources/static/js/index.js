@@ -94,43 +94,25 @@ let column = "number";
     total = gridView.getPageCount() - 1;
 
     Highcharts.chart('container', {
-        title: { text: '조회수별 그래프' },
-        yAxis: { title: { text: '' } },
-        xAxis: {},
-        legend: { layout: 'vertical', align: 'right', verticalAlign: 'middle' },
-        series: data.map(content => { return { name: content[1], data: [0, content[4]] } }),
-        responsive: {
-            rules: [{
-                condition: { maxWidth: 500 },
-                chartOptions: {
-                    legend: {
-                        layout: 'horizontal',
-                        align: 'center',
-                        verticalAlign: 'bottom'
-                    }
-                }
-            }]
-        }
+        chart: { type: 'column' },
+        title: {text: '게시글 조회수별'},
+        subtitle: {text: ''},
+        xAxis: {categories: ["게시글 조회수"]},
+        yAxis: {title: {text: ""}},
+        tooltip: {},
+        plotOptions: {},
+        series: data.filter(content => content[4] !== 0).map(content => { return { name: content[1], data: [content[4]] } }),
     });
 
     Highcharts.chart('container2', {
-        title: { text: '게시글 개수별 그래프' },
-        yAxis: { title: { text: '' } },
-        xAxis: {},
-        legend: { layout: 'vertical', align: 'right', verticalAlign: 'middle' },
-        series: [...new Set(data.map(content => content[2]))].map(user => { return { name: user, data: [0, data.filter(item => item[2] === user).length] } }),
-        responsive: {
-            rules: [{
-                condition: { maxWidth: 500 },
-                chartOptions: {
-                    legend: {
-                        layout: 'horizontal',
-                        align: 'center',
-                        verticalAlign: 'bottom'
-                    }
-                }
-            }]
-        }
+        chart: { type: 'column' },
+        title: { text: '게시글 작성 개수별' },
+        subtitle: {text: ''},
+        xAxis: {categories: ["게시글 작성수"]},
+        yAxis: {title: {text: ""}},
+        tooltip: {},
+        plotOptions: {},
+        series: [...new Set(data.map(content => content[2]))].map(user => { return { name: user, data: [data.filter(item => item[2] === user).length] } }),
     });
 })();
 
