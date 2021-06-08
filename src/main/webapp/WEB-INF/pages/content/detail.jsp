@@ -22,7 +22,6 @@
             <input id="writer" name="contentWriter" class="form-control" value="${content.getContentWriter()}" readonly>
         </div>
         <div class="form-group">
-
             <textarea id="content" name="contentContent" class="form-control" readonly>${content.getContentContent()}</textarea>
         </div>
         <div class="form-group">

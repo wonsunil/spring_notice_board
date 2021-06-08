@@ -26,18 +26,19 @@
                 <a href="/content/write" id="content-write" class="btn btn-primary">글쓰기</a>
             </div>
             <div id="content-body">
-<%--                <c:if test="${!empty contents}">--%>
-<%--                    <c:forEach var="content" items="${contents}">--%>
-<%--                        <div class="content">--%>
-<%--                            <div class="content-title">--%>
-<%--                                <a href="/content/${content.getContentId()}">${content.getContentTitle()}</a>--%>
-<%--                            </div>--%>
-<%--                            <div class="content-writer">${content.getContentWriter()}</div>--%>
-<%--                            <div class="content-content">${content.getContentContent()}</div>--%>
-<%--                        </div>--%>
-<%--                        <hr>--%>
-<%--                    </c:forEach>--%>
-<%--                </c:if>--%>
+                <c:if test="${!empty contents}">
+                    <c:forEach var="content" items="${contents}">
+                        <div class="content">
+                            <div class="content-title">
+                                <a href="/content/${content.getContentId()}">${content.getContentTitle()}</a>
+                            </div>
+                            <div class="content-writer">${content.getContentWriter()}</div>
+                            <div class="content-content">${content.getContentContent()}</div>
+                            <div>조회수 : ${content.getViewCount() == null ? 0 : content.getViewCount()}</div>
+                        </div>
+                        <hr>
+                    </c:forEach>
+                </c:if>
                 <div id="search-box">
                     <select name="" id="search-column">
                         <option value="number">번호</option>
