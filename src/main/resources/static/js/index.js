@@ -101,7 +101,7 @@ let column = "number";
         yAxis: {title: {text: ""}},
         tooltip: {},
         plotOptions: {},
-        series: data.filter(content => content[4] !== 0).map(content => { return { name: content[1], data: [content[4]] } }),
+        series: data.filter(content => content[4] !== 0).map(content => { return { name: content[1], data: [content[4]] } }).sort((a, b) => a.data[0] > b.data[0] ? 1 : -1),
     });
 
     Highcharts.chart('container2', {
@@ -112,7 +112,7 @@ let column = "number";
         yAxis: {title: {text: ""}},
         tooltip: {},
         plotOptions: {},
-        series: [...new Set(data.map(content => content[2]))].map(user => { return { name: user, data: [data.filter(item => item[2] === user).length] } }),
+        series: [...new Set(data.map(content => content[2]))].map(user => { return { name: user, data: [data.filter(item => item[2] === user).length] } }).sort((a, b) => a.data[0] > b.data[0] ? 1 : -1),
     });
 })();
 
