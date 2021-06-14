@@ -228,3 +228,12 @@ $("#search-input").on("keyup", ({ target: { value }, key }) => {
 
     setCurrent(searchIndex, column);
 });
+
+window.onload = () => {
+    setTimeout(() => {
+        const scroll = localStorage.getItem("scroll") ?? 0;
+        $("#content-body")[0].scrollTo({ top: Number(scroll), behavior: "smooth" });
+    }, 50);
+};
+
+window.onbeforeunload = () => localStorage.setItem("scroll", $("#content-body")[0].scrollTop);
