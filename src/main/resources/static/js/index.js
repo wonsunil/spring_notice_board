@@ -95,7 +95,7 @@ let column = "number";
 
     Highcharts.chart('container', {
         chart: { type: 'column' },
-        title: {text: '게시글 조회수별'},
+        title: {text: '게시글 조회수'},
         subtitle: {text: ''},
         xAxis: {categories: ["게시글 조회수"]},
         yAxis: {title: {text: ""}},
@@ -106,7 +106,7 @@ let column = "number";
 
     Highcharts.chart('container2', {
         chart: { type: 'column' },
-        title: { text: '게시글 작성 개수별' },
+        title: { text: '게시글 작성수' },
         subtitle: {text: ''},
         xAxis: {categories: ["게시글 작성수"]},
         yAxis: {title: {text: ""}},
